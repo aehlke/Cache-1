@@ -9,7 +9,7 @@
 import Foundation
 
 /// Random replacement policy
-class RReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
+public class RReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
 
     var randomGenerator: (Int) -> Int = { count in Int(arc4random_uniform(UInt32(count))) }
     private var keys: [KeyType] = []
@@ -23,7 +23,7 @@ class RReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Has
         return keys.remove(at: randomGenerator(keys.count))
     }
 
-    override func remove(key: KeyType) {
+    override public func remove(key: KeyType) {
         super.remove(key: key)
         guard maxCost > 0 else { return }
         if let index = keys.index(of: key) {

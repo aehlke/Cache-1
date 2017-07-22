@@ -9,7 +9,7 @@
 import Foundation
 
 /// Replacement policy that discards Most Recently Used items first.
-class MRUReplacementPolicy<KeyType>: LRUReplacementPolicy<KeyType> where KeyType: Hashable {
+public class MRUReplacementPolicy<KeyType>: LRUReplacementPolicy<KeyType> where KeyType: Hashable {
 
     override init(maxCost: Int) {
         super.init(maxCost: maxCost)

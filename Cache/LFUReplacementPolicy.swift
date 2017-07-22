@@ -10,7 +10,7 @@ import Foundation
 
 
 /// Replaces the least frequently used item first.
-class LFUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
+public class LFUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
 
     var frequencies = PriorityQueue<KeyType>()
 
@@ -23,13 +23,13 @@ class LFUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: H
         return frequencies.dequeue()
     }
 
-    override func cacheHit(for key: KeyType) {
+    override public func cacheHit(for key: KeyType) {
         if let useCount = frequencies.priority(for: key) {
             frequencies.updatePriority(for: key, to: useCount + 1)
         }
     }
 
-    override func remove(key: KeyType) {
+    override public func remove(key: KeyType) {
         super.remove(key: key)
         let _ = frequencies.remove(key)
     }

@@ -13,7 +13,7 @@ import Foundation
 /// Uses 4 LRU lists: 1 for recent entries, 1 for frequent entries, 1 for ghost list of 1st list, and 1 for ghost list
 /// of 2nd list.
 
-class ARCReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
+public class ARCReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
 
     var recentItems = CostPriorityQueue<KeyType>()
     var ghostRecentItems = CostPriorityQueue<KeyType>()
@@ -35,7 +35,7 @@ class ARCReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: H
         super.init(maxCost: maxCost)
     }
 
-    override func evictedKeysForAdded(key newKey: KeyType, cost newCost: Int) -> [KeyType] {
+    override public func evictedKeysForAdded(key newKey: KeyType, cost newCost: Int) -> [KeyType] {
         if ghostRecentItems.contains(newKey) {
             recentItems.maxCost += newCost
             frequentItems.maxCost -= newCost
@@ -75,7 +75,7 @@ class ARCReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: H
         queue.insert(item, priority: priority, cost: cost)
     }
 
-    override func cacheHit(for key: KeyType) {
+    override public func cacheHit(for key: KeyType) {
         let grandTotal = totalCost
         if let (item, cost) = recentItems.remove(key) {
             if ghostFrequentItems.contains(item) {
@@ -100,7 +100,7 @@ class ARCReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: H
         }
     }
 
-    override func remove(key: KeyType) {
+    override public func remove(key: KeyType) {
         if frequentItems.contains(key) {
             let result = frequentItems.remove(key)!
             insert(into: &ghostRecentItems, item: result.0, priority: age, cost: result.1)

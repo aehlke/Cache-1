@@ -22,7 +22,7 @@ import Foundation
 /// least recently used items are evicted from referenced list.
 /// 
 /// You need to specify proportion between size of referenced and unreferenced lists.
-class SLRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
+public class SLRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
 
     var referencedItems = CostPriorityQueue<KeyType>()
     var unreferencedItems = CostPriorityQueue<KeyType>()
@@ -40,7 +40,7 @@ class SLRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: 
         super.init(maxCost: maxCost)
     }
 
-    override func evictedKeysForAdded(key newKey: KeyType, cost newCost: Int) -> [KeyType] {
+    override public func evictedKeysForAdded(key newKey: KeyType, cost newCost: Int) -> [KeyType] {
         guard maxCost > 0 else { return [] }
         let evicted = evictedUnreferencedKeys(for: newCost) + evictedReferencedKeys(for: newCost)
         add(newKey, cost: newCost)
@@ -71,7 +71,7 @@ class SLRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: 
         return evicted
     }
 
-    override func cacheHit(for key: KeyType) {
+    override public func cacheHit(for key: KeyType) {
         if let (hitKey, hitCost) = unreferencedItems.remove(key) {
             moveLeastRecentReferencedKeysToUnreferencedSegmentForReplacement(with: hitKey, cost: hitCost)
             referencedItems.insert(hitKey, priority: age, cost: hitCost)
@@ -89,7 +89,7 @@ class SLRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: 
         }
     }
 
-    override func remove(key: KeyType) {
+    override public func remove(key: KeyType) {
         if unreferencedItems.contains(key) {
             let _ = unreferencedItems.remove(key)
         } else if referencedItems.contains(key) {

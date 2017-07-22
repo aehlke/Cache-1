@@ -9,7 +9,7 @@
 import Foundation
 
 /// Replacement policy that discards Least Recently Used items first.
-class LRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
+public class LRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: Hashable {
 
     private var age: Int = 0
     var recencies = PriorityQueue<KeyType>()
@@ -24,13 +24,13 @@ class LRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyType: H
         return recencies.dequeue()
     }
 
-    override func cacheHit(for key: KeyType) {
+    override public func cacheHit(for key: KeyType) {
         super.cacheHit(for: key)
         age += 1
         recencies.updatePriority(for: key, to: age)
     }
 
-    override func remove(key: KeyType) {
+    override public func remove(key: KeyType) {
         super.remove(key: key)
         let _ = recencies.remove(key)
     }
