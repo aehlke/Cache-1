@@ -33,7 +33,7 @@ public class SLRUReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where Ke
         set { fatalError("Trying to set totalCost") }
     }
 
-    init(maxCost: Int, referencedSegmentFraction: Double) {
+    public init(maxCost: Int, referencedSegmentFraction: Double) {
         assert(0 <= referencedSegmentFraction && referencedSegmentFraction <= 1)
         referencedItems.maxCost = Int(Double(maxCost) * referencedSegmentFraction)
         unreferencedItems.maxCost = maxCost - referencedItems.maxCost
