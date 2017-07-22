@@ -1,3 +1,4 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 Cache is a Swift implementation of a cache mechanism with different replacement policies. To learn more, visit [Cache replacement policies](https://en.wikipedia.org/wiki/Cache_replacement_policies) and [Page replacement algorithm](https://en.wikipedia.org/wiki/Page_replacement_algorithm) pages on Wikipedia.
 
