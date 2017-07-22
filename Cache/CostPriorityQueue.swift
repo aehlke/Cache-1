@@ -1,6 +1,6 @@
 //
 //  CostPriorityQueue.swift
-//  Cache
+//  DIYCache
 //
 //  Created by Dmitry Bespalov on 07/04/2017.
 //  Copyright © 2017 Dmitry Bespalov. All rights reserved.

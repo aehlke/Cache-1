@@ -7,17 +7,17 @@
 //
 
 import XCTest
-@testable import Cache
+@testable import DIYCache
 
 class CacheTests: XCTestCase {
 
-    var cache: Cache<String, Int>!
+    var cache: DIYCache<String, Int>!
     var policy: TestPolicy<String>!
 
     override func setUp() {
         super.setUp()
         policy = TestPolicy<String>(maxCost: 0)
-        cache = Cache<String, Int>(policy: policy, calculateCost: CostFunction.calculateMemorySize)
+        cache = DIYCache<String, Int>(policy: policy, calculateCost: CostFunction.calculateMemorySize)
     }
 
     private func add(key: String, value: Int) {

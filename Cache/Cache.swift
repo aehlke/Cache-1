@@ -1,6 +1,6 @@
 //
-//  Cache.swift
-//  Cache
+//  DIYCache.swift
+//  DIYCache
 //
 //  Created by Dmitry Bespalov on 24/03/17.
 //  Copyright © 2017 Dmitry Bespalov. All rights reserved.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final public class Cache<KeyType, ValueType> where KeyType: Hashable {
+final public class DIYCache<KeyType, ValueType> where KeyType: Hashable {
 
     public private (set) var hitCount: Int = 0
     public private (set) var missCount: Int = 0

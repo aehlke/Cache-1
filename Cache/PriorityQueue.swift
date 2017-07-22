@@ -1,6 +1,6 @@
 //
 //  PriorityQueue.swift
-//  Cache
+//  DIYCache
 //
 //  Created by Dmitry Bespalov on 26/03/17.
 //  Copyright © 2017 Dmitry Bespalov. All rights reserved.

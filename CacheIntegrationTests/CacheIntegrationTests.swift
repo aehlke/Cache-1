@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Cache
+@testable import DIYCache
 
 class CacheIntegrationTests: XCTestCase {
 
@@ -28,7 +28,7 @@ class CacheIntegrationTests: XCTestCase {
 
     func test_fifo() {
         let policy: ReplacementPolicy<Int> = FifoReplacementPolicy<Int>(maxCost: 5)
-        let cache = Cache<Int, Int>(policy: policy, calculateCost: { _ in 1 })
+        let cache = DIYCache<Int, Int>(policy: policy, calculateCost: { _ in 1 })
 
         for key in (0..<10) {
             let exp = expectation(description: "exp\(key)")
