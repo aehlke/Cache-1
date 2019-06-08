@@ -26,7 +26,7 @@ public class RReplacementPolicy<KeyType>: ReplacementPolicy<KeyType> where KeyTy
     override public func remove(key: KeyType) {
         super.remove(key: key)
         guard maxCost > 0 else { return }
-        if let index = keys.index(of: key) {
+        if let index = keys.firstIndex(of: key) {
             keys.remove(at: index)
         }
     }

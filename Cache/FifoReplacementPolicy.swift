@@ -14,7 +14,7 @@ public class FifoReplacementPolicy<KeyType>: ReplacementPolicy<KeyType>  where K
 
     override public func remove(key: KeyType) {
         super.remove(key: key)
-        if let index = keys.index(of: key) {
+        if let index = keys.firstIndex(of: key) {
             keys.remove(at: index)
         }
     }

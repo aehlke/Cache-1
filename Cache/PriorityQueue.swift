@@ -12,8 +12,11 @@ private struct Entry<ValueType>: Hashable where ValueType: Hashable {
 
     var priority: Int
     var value: ValueType
-    var hashValue: Int { return value.hashValue }
 
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(value.hashValue)
+    }
+    
     public static func ==(lhs: Entry, rhs: Entry) -> Bool {
         return lhs.value == rhs.value
     }
@@ -91,7 +94,7 @@ struct PriorityQueue<ValueType> where ValueType: Hashable {
     }
 
     private func index(of payload: ValueType) -> Int? {
-        return entries.index(of: Entry(priority: 0, value: payload))
+        return entries.firstIndex(of: Entry(priority: 0, value: payload))
     }
 
     /// Same here, most probably complexity will be O(log n), but in worst case is O(n)
